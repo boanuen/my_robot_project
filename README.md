@@ -24,16 +24,17 @@ Tính năng kỹ thuật
     Vật lý ổn định: Toàn bộ hệ thống được tinh chỉnh ma trận quán tính và đơn giản hóa các khối va chạm để tránh hiện tượng "nổ vật lý" trong Gazebo.
     Cấu trúc Package
 
-my_robot_project/
-├── CMakeLists.txt      # Quy tắc biên dịch ament_cmake 
-├── package.xml         # Khai báo dependencies (ros_gz, controller_manager)
-├── launch/             # Chứa script khởi động Python 
-│   ├── gazebo.launch.py
-│   └── display.launch.py
-├── meshes/             # File 3D (.STL) từ SolidWorks 
-├── urdf/               # Định nghĩa động học robot 
-│   └── assem1.urdf
-└── worlds/             # Môi trường giả lập (map.world) 
+my_robot_project           
+    ├── CMakeLists.txt           # File cấu hình biên dịch CMake
+    ├── package.xml              # Định nghĩa dependencies và plugins
+    ├── mesh                     # Chứa các file 3D của bánh xe và cánh tay
+    ├── urdf                     # Kiến trúc URDF 
+    │   └── assem1.urdf      
+    ├── launch                   # Các tệp khởi chạy hệ thống
+    │   └──  gazebo.launch.py    
+    │   └──  display.launch.py
+    └── rviz                     # Cấu hình trực quan hóa
+        └── config.rviz          # File làm sẵn cấu hình RViz2
 
 Hướng dẫn cài đặt và khởi chạy
 1. Cài đặt môi trường
