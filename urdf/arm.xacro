@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <link name="armlink1">
+        <inertial>
+            <origin xyz="0 0 0.08" /> <mass value="0.8" />
+            <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01" />
+        </inertial>
+        <visual><geometry><mesh filename="package://assem1/meshes/armlink1.STL" /></geometry></visual>
+    </link>
+
+    <link name="armlink2">
+        <inertial>
+            <origin xyz="0 0 0.05" /> <mass value="0.5" />
+            <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01" />
+        </inertial>
+        <visual><geometry><mesh filename="package://assem1/meshes/armlink2.STL" /></geometry></visual>
+    </link>
+
+    <joint name="armlink1_joint" type="revolute">
+        <origin xyz="-0.002 0.001 0.173" rpy="-0.74 0 0.03" />
+        <parent link="base_link" /><child link="armlink1" /><axis xyz="1 0 0" />
+        <limit lower="-1.57" upper="1.57" effort="100" velocity="1" />
+        <dynamics damping="1.0" friction="1.0"/>
+    </joint>
+
+    <joint name="armlink2_joint" type="revolute">
+        <origin xyz="0.001 0.054 0.072" rpy="-1.29 0 0" />
+        <parent link="armlink1" /><child link="armlink2" /><axis xyz="1 0 0" />
+        <limit lower="-1.57" upper="1.57" effort="100" velocity="1" />
+        <dynamics damping="1.0" friction="1.0"/>
+    </joint>
+
+    <ros2_control name="Assem1ArmControl" type="system">
+        <hardware><plugin>gz_ros2_control/GazeboSimSystem</plugin></hardware>
+        <joint name="armlink1_joint"><command_interface name="position"/><state_interface name="position"/></joint>
+        <joint name="armlink2_joint"><command_interface name="position"/><state_interface name="position"/></joint>
+    </ros2_control>
+
+    <gazebo>
+        <plugin filename="libgz_ros2_control-system.so" name="gz_ros2_control::GazeboSimControl">
+            <parameters>$(find assem1_controller)/config/arm_controller.yaml</parameters>
+        </plugin>
+    </gazebo>
+</robot>
