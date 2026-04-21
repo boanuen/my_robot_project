@@ -22,7 +22,8 @@ Tính năng kỹ thuật
     Điều khiển an toàn: Tích hợp node safe_control áp dụng ràng buộc động học mềm để tránh tay máy tự va chạm với thân xe.
 
     Vật lý ổn định: Toàn bộ hệ thống được tinh chỉnh ma trận quán tính và đơn giản hóa các khối va chạm để tránh hiện tượng "nổ vật lý" trong Gazebo.
-    Cấu trúc Package
+    
+Cấu trúc Package
 
 my_robot_project           
     ├── CMakeLists.txt           # File cấu hình biên dịch CMake
